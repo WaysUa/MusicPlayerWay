@@ -1,4 +1,4 @@
-package com.main.musicplayerway
+package com.main.musicplayerway.presentation.ui
 
 import android.os.Bundle
 import com.library.musicplayerway.R

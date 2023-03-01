@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "MusicPlayerWay"
 include ':app'
 include ':core'
+include ':songs'

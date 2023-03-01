@@ -1,21 +1,19 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.library.musicplayerway'
+    namespace 'com.main.songs'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.library.musicplayerway"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -56,5 +54,4 @@ dependencies {
     implementation 'javax.inject:javax.inject:1'
     //Modules
     implementation project(path: ':core')
-    implementation project(path: ':songs')
 }
