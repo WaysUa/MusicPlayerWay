@@ -4,16 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/Theme.MusicPlayerWay"
     tools:context=".presentation.ui.SongsFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <github.com.st235.lib_expandablebottombar.ExpandableBottomBar
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Songs"
-        android:textSize="30sp"
+        app:exb_backgroundColor="@color/prussian_blue"
+        app:exb_itemInactiveColor="@color/blue_green"
+        app:exb_itemBackgroundCornerRadius="20dp"
+        app:exb_items="@menu/bottom_navigation_menu"
+        app:exb_itemStyle="stroked"
+        app:exb_item_vertical_margin="12dp"
+        app:exb_item_horizontal_margin="8dp"
+        app:exb_item_horizontal_padding="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
