@@ -5,4 +5,8 @@
     app:startDestination="@id/songsNavGraph">
 
     <include app:graph="@navigation/songs_nav_graph" />
+
+    <include app:graph="@navigation/library_nav_graph" />
+
+    <include app:graph="@navigation/store_nav_graph" />
 </navigation>

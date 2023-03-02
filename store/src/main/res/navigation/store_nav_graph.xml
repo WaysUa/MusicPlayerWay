@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/storeNavGraph"
+    app:startDestination="@id/storeFragment">
+
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="com.main.store.presentation.ui.StoreFragment"
+        android:label="StoreFragment">
+
+        <deepLink app:uri="android-app://androidx.navigation/musicPlayer://store" />
+    </fragment>
+</navigation>

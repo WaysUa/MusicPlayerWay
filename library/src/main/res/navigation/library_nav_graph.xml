@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/libraryNavGraph"
+    app:startDestination="@id/libraryFragment">
+
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.main.library.presentation.ui.LibraryFragment"
+        android:label="LibraryFragment">
+
+        <deepLink app:uri="android-app://androidx.navigation/musicPlayer://library" />
+    </fragment>
+</navigation>

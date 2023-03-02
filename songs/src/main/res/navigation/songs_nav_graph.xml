@@ -9,6 +9,6 @@
         android:name="com.main.songs.presentation.ui.SongsFragment"
         android:label="SongsFragment">
 
-        <deepLink app:uri="musicPlayer://songs" />
+        <deepLink app:uri="android-app://androidx.navigation/musicPlayer://songs" />
     </fragment>
 </navigation>
