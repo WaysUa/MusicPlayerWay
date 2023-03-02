@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace 'com.main.songs'
+    namespace 'com.main.library'
     compileSdk 33
 
     defaultConfig {
