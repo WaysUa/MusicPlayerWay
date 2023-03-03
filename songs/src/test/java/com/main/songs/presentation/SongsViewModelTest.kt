@@ -1,13 +1,20 @@
 package com.main.songs.presentation
 
 import com.main.core.Resource
+import com.main.core.exception.AudioException
+import com.main.core.exception.ExceptionMessages.AUDIO_FILES_IS_EMPTY
+import com.main.songs.BaseSongsTest
 import com.main.songs.data.AudioFile
+import com.main.songs.domain.navigation.SongsNavigation
+import com.main.songs.domain.repositories.AudioRepository
+import com.main.songs.domain.usecases.GetAllAudioFilesUseCase
+import com.main.songs.presentation.viewmodel.SongsViewModel
 import org.junit.Test
 import org.junit.jupiter.api.Assertions
 import org.mockito.Mockito
 import org.mockito.kotlin.mock
 
-class SongsViewModelTest {
+class SongsViewModelTest : BaseSongsTest() {
 
     private val audioRepository = mock<AudioRepository>()
     private val getAllAudioFilesUseCase = GetAllAudioFilesUseCase(audioRepository)
@@ -24,7 +31,7 @@ class SongsViewModelTest {
             Resource.Success(listOf(AudioFile(1, "Title", "Artist", "Path")))
         )
         songsViewModel.getAllAudioFiles()
-        Assertions.assertTrue(songsCommunication.audioFiles?.isNotEmpty())
+        Assertions.assertTrue(songsCommunication.audioFiles.first().isNotEmpty())
     }
 
     @Test
@@ -33,6 +40,6 @@ class SongsViewModelTest {
             Resource.Error(emptyList(), AudioException(AUDIO_FILES_IS_EMPTY))
         )
         songsViewModel.getAllAudioFiles()
-        Assertions.assertTrue(songsCommunication.audioExceptions.message == AUDIO_FILES_IS_EMPTY)
+        Assertions.assertTrue(songsCommunication.audioErrors.first() == AUDIO_FILES_IS_EMPTY)
     }
 }
