@@ -3,7 +3,7 @@ package com.main.songs.presentation.communication
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.main.core.communication.Communication
-import com.main.songs.data.AudioFile
+import com.main.songs.data.entities.AudioFile
 
 interface SongsCommunication : ObserveSongsCommunication {
 

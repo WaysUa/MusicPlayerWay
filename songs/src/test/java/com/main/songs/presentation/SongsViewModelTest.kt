@@ -4,7 +4,7 @@ import com.main.core.Resource
 import com.main.core.exception.AudioException
 import com.main.core.exception.ExceptionMessages.AUDIO_FILES_IS_EMPTY
 import com.main.songs.BaseSongsTest
-import com.main.songs.data.AudioFile
+import com.main.songs.data.entities.AudioFile
 import com.main.songs.domain.navigation.SongsNavigation
 import com.main.songs.domain.repositories.AudioRepository
 import com.main.songs.domain.usecases.GetAllAudioFilesUseCase

@@ -8,6 +8,10 @@ android {
     namespace 'com.library.musicplayerway'
     compileSdk 33
 
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
     defaultConfig {
         applicationId "com.library.musicplayerway"
         minSdk 24

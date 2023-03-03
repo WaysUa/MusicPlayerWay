@@ -1,4 +1,4 @@
-package com.main.songs.data
+package com.main.songs.data.entities
 
 data class AudioFile(
     val id: Long,
