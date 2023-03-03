@@ -40,9 +40,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    //Testing
+    //Unit Testing
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    implementation 'org.mockito:mockito-core:4.9.0'
+    implementation 'org.mockito.kotlin:mockito-kotlin:4.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    //Ui Testing
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     //Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
@@ -52,8 +57,12 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.44.2'
     kapt 'com.google.dagger:dagger-compiler:2.44.2'
     implementation 'javax.inject:javax.inject:1'
-    //NavigationBar
+    //Navigation Bar
     implementation 'com.github.st235:expandablebottombar:1.5.1'
+    //Dexter
+    implementation 'com.karumi:dexter:6.2.3'
+    //Audio Visualizer
+    implementation 'com.gauravk.audiovisualizer:audiovisualizer:0.9.2'
     //Modules
     implementation project(path: ':core')
 }
