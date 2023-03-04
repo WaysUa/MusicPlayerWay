@@ -19,16 +19,22 @@ import com.main.core.base.BaseFragment
 import com.main.core.navigation.DeepLinks
 import com.main.songs.R
 import com.main.songs.data.entities.AudioFile
+import com.main.songs.data.permissions.MultiplePermissionsListenerImpl
 import com.main.songs.databinding.FragmentSongsBinding
+import com.main.songs.di.provider.ProvideSongsComponent
 import com.main.songs.presentation.viewmodel.SongsViewModel
 import com.main.songs.presentation.viewmodel.SongsViewModelFactory
 import javax.inject.Inject
 
-class SongsFragment : BaseFragment(), MultiplePermissionsListener {
+class SongsFragment : BaseFragment() {
     private val binding by lazy { FragmentSongsBinding.inflate(layoutInflater) }
     @Inject
     lateinit var songsViewModelFactory: SongsViewModelFactory
     private val songsViewModel: SongsViewModel by activityViewModels { songsViewModelFactory }
+
+    private val multiplePermissionsListener = MultiplePermissionsListenerImpl {
+        songsViewModel.getAllAudioFiles(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +43,11 @@ class SongsFragment : BaseFragment(), MultiplePermissionsListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity().applicationContext as ProvideSongsComponent).provideSongsComponent().inject(this)
+
         binding.bottomNavigationBar.menu.select(com.main.core.R.id.itemSongs)
         val navOptions = NavOptions.Builder().setPopUpTo(R.id.songsNavGraph, true).build()
-        binding.bottomNavigationBar.onItemSelectedListener = { selectedView, menuItem, _ ->
+        binding.bottomNavigationBar.onItemSelectedListener = { _, menuItem, _ ->
             when (menuItem.id) {
                 com.main.core.R.id.itemLibrary -> findNavController().navigate(DeepLinks.LIBRARY_DEEP_LINK, navOptions)
                 com.main.core.R.id.itemStore -> findNavController().navigate(DeepLinks.STORE_DEEP_LINK, navOptions)
@@ -48,49 +56,13 @@ class SongsFragment : BaseFragment(), MultiplePermissionsListener {
 
         Dexter.withContext(context)
             .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
-            .withListener(this)
+            .withListener(multiplePermissionsListener)
             .check()
 
-    }
+        songsViewModel.observeAudioFiles(this) { audioFiles ->
 
-    private fun getAllAudioFiles(): ArrayList<AudioFile> {
-        val audioFiles = ArrayList<AudioFile>()
-        val contentResolver = requireContext().contentResolver
-        val uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-        val projection = arrayOf(
-            MediaStore.Audio.Media._ID,
-            MediaStore.Audio.Media.TITLE,
-            MediaStore.Audio.Media.ARTIST,
-            MediaStore.Audio.Media.DATA
-        )
-        val cursor = contentResolver.query(uri, projection, null, null, null)
-        cursor?.use {
-            val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID)
-            val titleColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)
-            val artistColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)
-            val dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
-
-            while (cursor.moveToNext()) {
-                val id = cursor.getLong(idColumn)
-                val title = cursor.getString(titleColumn)
-                val artist = cursor.getString(artistColumn)
-                val path = cursor.getString(dataColumn)
-                val audioFile = AudioFile(id, title, artist, path)
-                audioFiles.add(audioFile)
-            }
         }
-        return audioFiles
-    }
 
-    override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
-        if (p0?.areAllPermissionsGranted() == true) {
-            getAllAudioFiles().forEachIndexed { index, audioFile ->
-                Log.d("MyLog", "index: $index, audio: $audioFile")
-            }
-        }
+        songsViewModel.getAllAudioFiles(requireContext())
     }
-
-    override fun onPermissionRationaleShouldBeShown(
-        p0: MutableList<PermissionRequest>?, p1: PermissionToken?
-    ) = Unit
 }
