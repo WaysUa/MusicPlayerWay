@@ -22,6 +22,7 @@ import com.main.songs.data.entities.AudioFile
 import com.main.songs.data.permissions.MultiplePermissionsListenerImpl
 import com.main.songs.databinding.FragmentSongsBinding
 import com.main.songs.di.provider.ProvideSongsComponent
+import com.main.songs.presentation.adapter.AudioFilesAdapter
 import com.main.songs.presentation.viewmodel.SongsViewModel
 import com.main.songs.presentation.viewmodel.SongsViewModelFactory
 import javax.inject.Inject
@@ -35,6 +36,7 @@ class SongsFragment : BaseFragment() {
     private val multiplePermissionsListener = MultiplePermissionsListenerImpl {
         songsViewModel.getAllAudioFiles(requireContext())
     }
+    private val audioFilesAdapter = AudioFilesAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +47,7 @@ class SongsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity().applicationContext as ProvideSongsComponent).provideSongsComponent().inject(this)
 
+        binding.rvAudioFiles.adapter = audioFilesAdapter
         binding.bottomNavigationBar.menu.select(com.main.core.R.id.itemSongs)
         binding.bottomNavigationBar.onItemSelectedListener = { _, menuItem, _ ->
             songsViewModel.manageMenuItem(menuItem, findNavController())
@@ -56,7 +59,7 @@ class SongsFragment : BaseFragment() {
         )
 
         songsViewModel.observeAudioFiles(this) { audioFiles ->
-            Log.d("MyLog", audioFiles.joinToString())
+            audioFilesAdapter.mapAudioFiles(audioFiles)
         }
 
         songsViewModel.getAllAudioFiles(requireContext())
