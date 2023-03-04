@@ -46,21 +46,17 @@ class SongsFragment : BaseFragment() {
         (requireActivity().applicationContext as ProvideSongsComponent).provideSongsComponent().inject(this)
 
         binding.bottomNavigationBar.menu.select(com.main.core.R.id.itemSongs)
-        val navOptions = NavOptions.Builder().setPopUpTo(R.id.songsNavGraph, true).build()
         binding.bottomNavigationBar.onItemSelectedListener = { _, menuItem, _ ->
-            when (menuItem.id) {
-                com.main.core.R.id.itemLibrary -> findNavController().navigate(DeepLinks.LIBRARY_DEEP_LINK, navOptions)
-                com.main.core.R.id.itemStore -> findNavController().navigate(DeepLinks.STORE_DEEP_LINK, navOptions)
-            }
+            songsViewModel.manageMenuItem(menuItem, findNavController())
         }
 
-        Dexter.withContext(context)
-            .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
-            .withListener(multiplePermissionsListener)
-            .check()
+        songsViewModel.requestPermission(
+            permission = Manifest.permission.READ_EXTERNAL_STORAGE,
+            multiplePermissionsListener = multiplePermissionsListener
+        )
 
         songsViewModel.observeAudioFiles(this) { audioFiles ->
-
+            Log.d("MyLog", audioFiles.joinToString())
         }
 
         songsViewModel.getAllAudioFiles(requireContext())

@@ -15,7 +15,7 @@ class Application : Application(), ProvideSongsComponent {
             .builder()
             .songsPresentationModule(SongsPresentationModule())
             .songsDomainModule(SongsDomainModule())
-            .songsDataModule(SongsDataModule())
+            .songsDataModule(SongsDataModule(applicationContext))
             .build()
     }
 

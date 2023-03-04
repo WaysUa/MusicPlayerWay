@@ -1,5 +1,6 @@
 package com.main.songs.di.modules
 
+import com.main.songs.data.permissions.ManagePermissions
 import com.main.songs.domain.navigation.SongsNavigation
 import com.main.songs.domain.usecases.GetAllAudioFilesUseCase
 import com.main.songs.presentation.communication.SongsAudioErrorsCommunication
@@ -16,12 +17,14 @@ class SongsPresentationModule {
     fun provideSongsViewModelFactory(
         songsCommunication: SongsCommunication,
         songsNavigation: SongsNavigation,
-        getAllAudioFilesUseCase: GetAllAudioFilesUseCase
+        getAllAudioFilesUseCase: GetAllAudioFilesUseCase,
+        managePermissions: ManagePermissions
     ): SongsViewModelFactory {
         return SongsViewModelFactory(
             songsCommunication = songsCommunication,
             songsNavigation = songsNavigation,
-            getAllAudioFilesUseCase = getAllAudioFilesUseCase
+            getAllAudioFilesUseCase = getAllAudioFilesUseCase,
+            managePermissions = managePermissions
         )
     }
 
