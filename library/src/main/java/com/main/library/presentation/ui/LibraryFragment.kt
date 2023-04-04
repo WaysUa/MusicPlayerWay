@@ -21,6 +21,7 @@ import github.com.st235.lib_expandablebottombar.navigation.ExpandableBottomBarNa
 class LibraryFragment : BaseFragment() {
     private val binding by lazy { FragmentLibraryBinding.inflate(layoutInflater) }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
