@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/song_playing" />
             <option value="$PROJECT_DIR$/songs" />
             <option value="$PROJECT_DIR$/store" />
           </set>
