@@ -9,4 +9,6 @@
     <include app:graph="@navigation/library_nav_graph" />
 
     <include app:graph="@navigation/store_nav_graph" />
+
+    <include app:graph="@navigation/song_playing_nav_graph" />
 </navigation>

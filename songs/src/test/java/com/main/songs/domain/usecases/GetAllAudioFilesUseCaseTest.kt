@@ -3,7 +3,7 @@ package com.main.songs.domain.usecases
 import com.main.core.Resource
 import com.main.core.exception.AudioException
 import com.main.core.exception.ExceptionMessages.AUDIO_FILES_IS_EMPTY
-import com.main.songs.data.entities.AudioFile
+import com.main.core.entities.AudioFile
 import com.main.songs.domain.repositories.AudioRepository
 import org.junit.Test
 import org.junit.jupiter.api.Assertions

@@ -3,7 +3,7 @@ package com.main.songs
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.main.core.DispatchersList
-import com.main.songs.data.entities.AudioFile
+import com.main.core.entities.AudioFile
 import com.main.songs.presentation.communication.SongsCommunication
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi

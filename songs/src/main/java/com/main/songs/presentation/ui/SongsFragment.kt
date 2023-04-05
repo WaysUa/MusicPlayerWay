@@ -18,11 +18,12 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.main.core.base.BaseFragment
 import com.main.core.navigation.DeepLinks
 import com.main.songs.R
-import com.main.songs.data.entities.AudioFile
+import com.main.core.entities.AudioFile
 import com.main.songs.data.permissions.MultiplePermissionsListenerImpl
 import com.main.songs.databinding.FragmentSongsBinding
 import com.main.songs.di.provider.ProvideSongsComponent
 import com.main.songs.presentation.adapter.AudioFilesAdapter
+import com.main.songs.presentation.adapter.AudioFilesAdapterClickListener
 import com.main.songs.presentation.viewmodel.SongsViewModel
 import com.main.songs.presentation.viewmodel.SongsViewModelFactory
 import javax.inject.Inject
@@ -36,7 +37,11 @@ class SongsFragment : BaseFragment() {
     private val multiplePermissionsListener = MultiplePermissionsListenerImpl {
         songsViewModel.getAllAudioFiles(requireContext())
     }
-    private val audioFilesAdapter = AudioFilesAdapter()
+    private val audioFilesAdapter = AudioFilesAdapter(object : AudioFilesAdapterClickListener {
+        override fun clickAudioFile(audioFile: AudioFile) {
+            TODO("Not yet implemented")
+        }
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

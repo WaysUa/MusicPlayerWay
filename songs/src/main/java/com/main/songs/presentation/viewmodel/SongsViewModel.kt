@@ -8,7 +8,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.main.core.base.BaseViewModel
 import com.main.core.exception.AudioException
 import com.main.core.exception.ExceptionMessages.AUDIO_FILES_IS_EMPTY
-import com.main.songs.data.entities.AudioFile
+import com.main.core.entities.AudioFile
 import com.main.songs.data.permissions.ManagePermissions
 import com.main.songs.domain.navigation.SongsNavigation
 import com.main.songs.domain.usecases.GetAllAudioFilesUseCase

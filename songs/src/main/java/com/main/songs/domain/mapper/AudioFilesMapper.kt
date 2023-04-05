@@ -1,6 +1,6 @@
 package com.main.songs.domain.mapper
 
-import com.main.songs.data.entities.AudioFile
+import com.main.core.entities.AudioFile
 
 interface AudioFilesMapper {
 

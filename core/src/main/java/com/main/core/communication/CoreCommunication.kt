@@ -1,45 +1,48 @@
 package com.main.core.communication
 
-import android.net.Uri
+import com.main.core.entities.AudioFile
 
 interface CoreCommunication : ValueCoreCommunication, MapCoreCommunication {
 
     class Base(
-        private val coreContentUriCommunication: CoreContentUriCommunication,
+        private val coreAudioFileCommunication: CoreAudioFileCommunication,
         private val coreIsNeedToGoToBookReadingFragment: CoreIsNeedToGoToBookReadingFragment
     ): CoreCommunication {
-
-        override fun manageUri(uri: Uri) {
-            coreContentUriCommunication.map(uri)
-        }
 
         override fun manageIsNeedToGoToBookReadingFragment(value: Boolean) {
             coreIsNeedToGoToBookReadingFragment.map(value)
         }
 
-        override fun valueUri() = coreContentUriCommunication.value()
+        override fun valueAudioFile(): AudioFile? {
+            return coreAudioFileCommunication.value()
+        }
+
 
         override fun valueIsNeedToGoToBookReadingFragment(): Boolean? {
             return coreIsNeedToGoToBookReadingFragment.value()
+        }
+
+        override fun manageAudioFile(audioFile: AudioFile) {
+            coreAudioFileCommunication.map(audioFile)
         }
     }
 }
 
 interface ValueCoreCommunication {
-    fun valueUri(): Uri?
+    fun valueAudioFile(): AudioFile?
 
     fun valueIsNeedToGoToBookReadingFragment(): Boolean?
 }
 
 interface MapCoreCommunication {
 
-    fun manageUri(uri: Uri)
+    fun manageAudioFile(audioFile: AudioFile)
 
     fun manageIsNeedToGoToBookReadingFragment(value: Boolean)
 }
 
-interface CoreContentUriCommunication: Communication.Mutable<Uri> {
-    class Base: Communication.Ui<Uri>(), CoreContentUriCommunication
+interface CoreAudioFileCommunication: Communication.Mutable<AudioFile> {
+    class Base: Communication.Ui<AudioFile>(), CoreAudioFileCommunication
 }
 
 interface CoreIsNeedToGoToBookReadingFragment: Communication.Mutable<Boolean> {

@@ -3,7 +3,7 @@ package com.main.songs.domain.usecases
 import android.content.Context
 import com.main.core.Resource
 import com.main.core.base.BaseUseCase
-import com.main.songs.data.entities.AudioFile
+import com.main.core.entities.AudioFile
 import com.main.songs.domain.repositories.AudioRepository
 
 class GetAllAudioFilesUseCase(

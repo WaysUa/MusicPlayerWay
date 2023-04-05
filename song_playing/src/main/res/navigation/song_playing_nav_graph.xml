@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/songPlayingNavGraph"
+    app:startDestination="@id/songPlayingFragment">
+
+    <fragment
+        android:id="@+id/songPlayingFragment"
+        android:name="com.main.song_playing.presentation.ui.SongPlayingFragment"
+        android:label="SongPlayingFragment">
+
+        <deepLink app:uri="android-app://androidx.navigation/musicPlayer://song/playing" />
+    </fragment>
+</navigation>

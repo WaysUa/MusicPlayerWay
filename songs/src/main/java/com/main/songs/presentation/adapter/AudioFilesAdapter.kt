@@ -7,19 +7,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.main.songs.R
-import com.main.songs.data.entities.AudioFile
+import com.main.core.entities.AudioFile
 import com.main.songs.databinding.ItemAudioFileBinding
 import com.main.songs.domain.mapper.AudioFilesMapper
 
-class AudioFilesAdapter : RecyclerView.Adapter<AudioFilesAdapter.AudioFilesViewHolder>(), AudioFilesMapper {
+class AudioFilesAdapter(
+    private val audioFilesAdapterClickListener: AudioFilesAdapterClickListener
+) : RecyclerView.Adapter<AudioFilesAdapter.AudioFilesViewHolder>(), AudioFilesMapper {
     private val audioFiles = mutableListOf<AudioFile>()
 
     class AudioFilesViewHolder(view: View): ViewHolder(view) {
         private val binding by lazy { ItemAudioFileBinding.bind(view) }
 
-        fun bind(audioFile: AudioFile, audioFilesMapper: AudioFilesMapper) {
+        fun bind(
+            audioFile: AudioFile, audioFilesMapper: AudioFilesMapper,
+            audioFilesAdapterClickListener: AudioFilesAdapterClickListener
+        ) {
             binding.tvTitle.text = audioFilesMapper.mapTextLength(20, audioFile.title)
             binding.tvArtist.text = audioFilesMapper.mapTextLength(20, audioFile.artist)
+            binding.itemAudioFile.setOnClickListener { audioFilesAdapterClickListener.clickAudioFile(audioFile) }
         }
     }
 
@@ -29,7 +35,7 @@ class AudioFilesAdapter : RecyclerView.Adapter<AudioFilesAdapter.AudioFilesViewH
     }
 
     override fun onBindViewHolder(holder: AudioFilesViewHolder, position: Int) {
-        holder.bind(audioFiles[position], this)
+        holder.bind(audioFiles[position], this, audioFilesAdapterClickListener)
     }
 
     override fun getItemCount() = audioFiles.size
@@ -43,4 +49,8 @@ class AudioFilesAdapter : RecyclerView.Adapter<AudioFilesAdapter.AudioFilesViewH
     override fun mapTextLength(length: Int, text: String): String {
         return if (text.length > length) "${text.substring(0, length)}..." else text
     }
+}
+
+interface AudioFilesAdapterClickListener {
+    fun clickAudioFile(audioFile: AudioFile)
 }

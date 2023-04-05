@@ -1,7 +1,7 @@
 package com.main.core.di.modules
 
+import com.main.core.communication.CoreAudioFileCommunication
 import com.main.core.communication.CoreCommunication
-import com.main.core.communication.CoreContentUriCommunication
 import com.main.core.communication.CoreIsNeedToGoToBookReadingFragment
 import com.main.core.viewmodel.CoreViewModelFactory
 import dagger.Module
@@ -19,18 +19,18 @@ class CoreModule {
 
     @Provides
     fun provideMainCommunication(
-        coreContentUriCommunication: CoreContentUriCommunication,
+        coreAudioFileCommunication: CoreAudioFileCommunication,
         coreIsNeedToGoToBookReadingFragment: CoreIsNeedToGoToBookReadingFragment
     ): CoreCommunication {
         return CoreCommunication.Base(
-            coreContentUriCommunication = coreContentUriCommunication,
+            coreAudioFileCommunication = coreAudioFileCommunication,
             coreIsNeedToGoToBookReadingFragment = coreIsNeedToGoToBookReadingFragment
         )
     }
 
     @Provides
-    fun provideCoreContentUriCommunication(): CoreContentUriCommunication {
-        return CoreContentUriCommunication.Base()
+    fun provideCoreAudioFileCommunication(): CoreAudioFileCommunication {
+        return CoreAudioFileCommunication.Base()
     }
 
     @Provides
