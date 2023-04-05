@@ -1,14 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.ui.SongPlayingFragment">
+    android:theme="@style/Theme.MusicPlayerWay"
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/ivSongIcon"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/example_song_icon" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tvSongTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="serif"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/ivSongIcon"
+        app:layout_constraintStart_toStartOf="@+id/ivSongIcon"
+        app:layout_constraintTop_toBottomOf="@+id/ivSongIcon"
+        tools:text="TDME" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvSongAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvSongTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvSongTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongTitle"
+        tools:text="Antutila" />
+
+    <SeekBar
+        android:id="@+id/sbSongProgress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutMenu"
+        app:layout_constraintEnd_toEndOf="@+id/ivSongIcon"
+        app:layout_constraintStart_toStartOf="@+id/ivSongIcon" />
+
+    <TextView
+        android:id="@+id/tvCurrentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="0:00"
+        app:layout_constraintStart_toStartOf="@+id/sbSongProgress"
+        app:layout_constraintTop_toBottomOf="@+id/sbSongProgress" />
+
+    <TextView
+        android:id="@+id/tvMaxTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="3:18"
+        app:layout_constraintEnd_toEndOf="@+id/sbSongProgress"
+        app:layout_constraintTop_toBottomOf="@+id/sbSongProgress" />
+
+    <LinearLayout
+        android:id="@+id/layoutMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btnShuffle"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_shuffle" />
+
+        <ImageView
+            android:id="@+id/btnPreviousMusic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_previous" />
+
+        <ImageView
+            android:id="@+id/btnControlMedia"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_pause" />
+
+        <ImageView
+            android:id="@+id/btnNextMusic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_next" />
+
+        <ImageView
+            android:id="@+id/btnRepeat"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/icon_repeat" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
