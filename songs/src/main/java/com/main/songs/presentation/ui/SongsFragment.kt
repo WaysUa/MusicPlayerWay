@@ -39,7 +39,7 @@ class SongsFragment : BaseFragment() {
     }
     private val audioFilesAdapter = AudioFilesAdapter(object : AudioFilesAdapterClickListener {
         override fun clickAudioFile(audioFile: AudioFile) {
-            TODO("Not yet implemented")
+            songsViewModel.navigateToSongPlayingFragment(findNavController())
         }
     })
 

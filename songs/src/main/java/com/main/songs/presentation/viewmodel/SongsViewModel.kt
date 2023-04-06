@@ -46,6 +46,10 @@ class SongsViewModel(
         managePermissions.requestPermission(permission, multiplePermissionsListener)
     }
 
+    fun navigateToSongPlayingFragment(navController: NavController) {
+        songsNavigation.navigateToSongPlayingFragment(navController)
+    }
+
     override fun observeAudioFiles(owner: LifecycleOwner, observer: Observer<List<AudioFile>>) {
         songsCommunication.observeAudioFiles(owner, observer)
     }

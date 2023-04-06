@@ -11,6 +11,8 @@ interface SongsNavigation {
 
     fun navigateToStoreFragment(navController: NavController)
 
+    fun navigateToSongPlayingFragment(navController: NavController)
+
     class Base : SongsNavigation {
 
         override fun navigateToLibraryFragment(navController: NavController) {
@@ -21,6 +23,10 @@ interface SongsNavigation {
         override fun navigateToStoreFragment(navController: NavController) {
             val navOptions = NavOptions.Builder().setPopUpTo(R.id.songsNavGraph, true).build()
             navController.navigate(DeepLinks.STORE_DEEP_LINK, navOptions)
+        }
+
+        override fun navigateToSongPlayingFragment(navController: NavController) {
+            navController.navigate(DeepLinks.SONG_PLAYING_NAV_GRAPH)
         }
     }
 }
