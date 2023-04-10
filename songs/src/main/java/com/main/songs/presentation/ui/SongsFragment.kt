@@ -19,6 +19,8 @@ import com.main.core.base.BaseFragment
 import com.main.core.navigation.DeepLinks
 import com.main.songs.R
 import com.main.core.entities.AudioFile
+import com.main.core.viewmodel.CoreViewModel
+import com.main.core.viewmodel.CoreViewModelFactory
 import com.main.songs.data.permissions.MultiplePermissionsListenerImpl
 import com.main.songs.databinding.FragmentSongsBinding
 import com.main.songs.di.provider.ProvideSongsComponent
@@ -33,6 +35,9 @@ class SongsFragment : BaseFragment() {
     @Inject
     lateinit var songsViewModelFactory: SongsViewModelFactory
     private val songsViewModel: SongsViewModel by activityViewModels { songsViewModelFactory }
+    @Inject
+    lateinit var coreViewModelFactory: CoreViewModelFactory
+    private val coreViewModel: CoreViewModel by activityViewModels { coreViewModelFactory }
 
     private val multiplePermissionsListener = MultiplePermissionsListenerImpl {
         songsViewModel.getAllAudioFiles(requireContext())
@@ -40,6 +45,7 @@ class SongsFragment : BaseFragment() {
     private val audioFilesAdapter = AudioFilesAdapter(object : AudioFilesAdapterClickListener {
         override fun clickAudioFile(audioFile: AudioFile) {
             songsViewModel.navigateToSongPlayingFragment(findNavController())
+            coreViewModel.manageAudioFile(audioFile)
         }
     })
 
